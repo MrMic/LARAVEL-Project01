@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return "MAIN PAGE";
+    return view(view:  'index', data:  [
+        'name' =>  'Laravel',
+    ]);
 });
 
 Route::get("/hello", function () {

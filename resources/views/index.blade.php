@@ -3,7 +3,11 @@
 </div>
 
 <div>
-    @isset($name)
-        The name is {{ $name }}
-    @endisset
+    @forelse($tasks as $task)
+        <div>
+            <a href="{{ route('tasks.show', ['id' => $task->id]) }}">{{ $task->title }}</a>
+        </div>
+    @empty
+        <li>No tasks found</li>
+    @endforelse
 </div>

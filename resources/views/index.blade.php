@@ -1,8 +1,8 @@
-<div>
-    Hello I am a Blade Template
-</div>
+@extends('layouts.app')
 
-<div>
+@section('title', 'The list of Tasks')
+
+@section('content')
     @forelse($tasks as $task)
         <div>
             <a href="{{ route('tasks.show', ['id' => $task->id]) }}">{{ $task->title }}</a>
@@ -10,4 +10,4 @@
     @empty
         <li>No tasks found</li>
     @endforelse
-</div>
+@endsection

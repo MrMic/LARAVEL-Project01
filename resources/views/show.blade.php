@@ -4,43 +4,46 @@
 @section('title', $task->title)
 
 @section('content')
-    <p>
+    <div class="mb-4">
+        <a href="{{ route('tasks.index') }}" class="link">
+            👈 Go Back to the Task List
+        </a>
+    </div>
+
+    <p class="mb-4 text-slate-700">
         {{ $task->description }}</p>
 
     @if ($task->long_description)
-        <p>{{ $task->long_description }}</p>
+        <p class="mb-4 text-slate-700">{{ $task->long_description }}</p>
     @else
         <p>There is no description</p>
     @endif
 
-    <p>Created at: {{ $task->created_at }}</p>
-    <p>Updated at: {{ $task->updated_at }}</p>
+    <p class="mb-4 text-sm text-slate-500"> Created {{ $task->created_at->diffForHumans() }} ♦️ Updated
+        {{ $task->updated_at->diffForHumans() }}</p>
 
-    <p>
+    <p class="mb-4 text-sm text-slate-500">
         @if ($task->completed)
-            <span style="color: green">Completed</span>
+            <span class="font-medium text-green-500">Completed</span>
         @else
-            <span style="color: red">Not completed</span>
+            <span class="text-medium text-red-500">Not completed</span>
         @endif
     </p>
 
-    <div>
-        <a href="{{ route('tasks.edit', ['task' => $task]) }}">Edit</a>
-    </div>
+    <div class="flex gap-4">
+        <a href="{{ route('tasks.edit', ['task' => $task]) }}" class="btn">Edit</a>
 
-    <div>
         <form method='POST' action="{{ route('tasks.toggle-complete', ['task' => $task]) }}">
             @csrf
             @method('PUT')
-            <button type="submit">{{ $task->completed ? 'Mark as incomplete' : 'Mark as complete' }}</button>
+            <button type="submit"
+                class="btn">{{ $task->completed ? 'Mark as incomplete' : 'Mark as complete' }}</button>
         </form>
-    </div>
 
-    <div>
         <form method='POST' action="{{ route('tasks.destroy', ['task' => $task]) }}">
             @csrf
             @method('DELETE')
-            <button type="submit">Delete</button>
+            <button type="submit" class="btn">Delete</button>
         </form>
     </div>
 @endsection

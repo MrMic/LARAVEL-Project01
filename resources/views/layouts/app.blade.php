@@ -16,7 +16,21 @@
 
         .link {
             @apply font-medium text-center text-amber-50 px-2 py-1  decoration-pink-500 rounded-md
-             bg-amber-500 rounded-full shadow-lg shadow-amber-700        }
+             bg-amber-500 shadow-lg shadow-amber-700
+        }
+
+        label {
+            @apply block uppercase text-slate-700  mb-2
+        }
+
+        input,textarea {
+            @apply shadow-sm appearance-none w-full border text-slate-700 rounded-md py-2 px-3
+            leading-tight  focus:outline-none
+        }
+
+        .error-message {
+            @apply text-red-500 text-sm
+        }
     </style>
     {{-- blade-formatter-enable --}}
 
